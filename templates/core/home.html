@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<center>
+    <h4>Events Organizer</h4>
+</center>
+<form class="form" id="home" action="" method="POST">
+    {% csrf_token %}
+
+    <div class="jumbotron bg-light">
+        <div>
+            <label for="event">Event Name:</label>
+            <input type="text" id="event" name="event" value="{{event.name}}">
+          </div>
+ 
+        <select name="country" class="custom-select mb-4"
+                            hx-get="{% url 'citys' %}"
+                            hx-trigger="change"
+                            hx-target="#citys">
+         <option select>Country</option>
+
+        {% for country in countries %}
+          <option value="{{country.pk}}">{{country.name}}</option>
+        {% endfor %}
+      </select>
+
+      <div id="citys">
+        {% include 'core/selection/citys.html' %}
+      </div>
+      
+        <!--ASK THE CITY-->
+
+        <!--ASK THE COUNTRY-->
+
+        <a class="btn btn--dark" href="{% url 'home' %}">Cancel</a>
+        <button class="btn btn--main" type="submit">Create</button>
+    </div>
+</form>
+
+<!--Print all LOCATIONS-->
+<br>
+<br>
+<p>Event    || Location</p>
+{% for event in events %}
+
+<p>{{event.name}} || {{event.location}}</p>
+<br>
+{% endfor %}
+
+{% endblock %}

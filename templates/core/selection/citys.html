@@ -1,0 +1,26 @@
+<div>
+    <select name="city" class="custom-select mb-4"
+        hx-get="{% url 'districts' %}"
+        hx-trigger="change"
+        hx-target="#districts">
+        <option disabled selected="True">City</option>
+        {% for city in citys %}
+            <option value="{{city.pk}}">{{ city.name }}</option>
+        {% endfor %}
+    </select>
+</div>
+<br>
+
+
+
+<div id="districts">
+    <select name="district" class="custom-select mb-4"
+        hx-get="{% url 'home' %}"
+        hx-trigger="change"
+        hx-target="#home">
+        <option disabled selected="True">District</option>
+        {% for district in districts %}
+            <option value="{{district.pk}}">{{ district.name }}</option>
+        {% endfor %}
+    </select>
+</div>
