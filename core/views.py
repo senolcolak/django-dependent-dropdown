@@ -15,8 +15,6 @@ def home(request):
         event = Event()
         event.name = request.POST.get("event")
         event.location = District.objects.get(id=(request.POST.get("district")))
-        #event.location = request.POST('district')
-        #event.location = request.POST('district')
         print(event.name)
         print(event.location)
         event.save()
